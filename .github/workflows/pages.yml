@@ -1,0 +1,41 @@
+name: Publicar a BELL no GitHub Pages
+
+on:
+  push:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Atualizar os seis vídeos do Slackjeff
+        run: python3 scripts/atualizar-videos.py
+      - name: Empacotar o site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - name: Publicar o site
+        id: deployment
+        uses: actions/deploy-pages@v4

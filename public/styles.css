@@ -61,7 +61,7 @@ button, input, select, textarea { font: inherit; }
   border-bottom: 1px solid var(--line);
 }
 
-.site-header__inner, .site-footer__inner {
+.site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -220,8 +220,6 @@ h2 {
 }
 
 .service-card:hover { border-color: #7aa9e6; background: #f3f8ff; }
-.service-card--accent { border-color: #c8dff8; background: #eff7ff; }
-.service-card--accent:hover { background: #e3f1ff; }
 
 .service-card__icon {
   display: block;
@@ -238,8 +236,6 @@ h2 {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-
-.service-card--accent .service-card__icon { background: #deedff; }
 
 .service-card h3 { font-size: 1.1rem; font-weight: 740; line-height: 1.35; }
 .service-card p { margin-top: .45rem; color: var(--muted); }
@@ -318,9 +314,107 @@ h2 {
 .field select:invalid { color: var(--muted); }
 .field select option { color: var(--ink); }
 
-.site-footer { padding-block: 1.2rem; background: var(--ink); color: #e0ebfb; }
-.site-footer p { color: var(--paper); font-weight: 720; }
-.site-footer a { font-weight: 620; white-space: nowrap; }
+.videos-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.videos-channel {
+  display: inline-block;
+  margin-top: .8rem;
+  color: var(--blue);
+  font-weight: 680;
+  text-underline-offset: .2em;
+}
+
+.videos-controls { display: flex; gap: .5rem; }
+.videos-controls[hidden], .videos-list[hidden] { display: none; }
+
+.videos-controls button {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: .65rem;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.videos-controls button:hover:enabled { background: #eff7ff; }
+.videos-controls button:disabled { opacity: .45; cursor: default; }
+.videos-status { color: var(--muted); }
+
+.videos-list {
+  --video-gap: 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--video-gap)) / 3);
+  gap: var(--video-gap);
+  margin: 0;
+  padding: .25rem .25rem .85rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: .25rem;
+  scrollbar-color: #acc4df #f1f6fc;
+  list-style: none;
+}
+
+.videos-list li { min-width: 0; scroll-snap-align: start; }
+
+.video-card {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+
+.video-card:hover { background: #f3f8ff; }
+.video-card:focus-visible { outline-offset: -3px; }
+
+.video-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #edf5fd;
+}
+
+.video-card h3 {
+  padding: .85rem 1rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.site-footer { padding-block: clamp(1.65rem, 4vw, 2.75rem); background: var(--ink); color: #e0ebfb; }
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 2.75rem);
+}
+
+.site-footer__contact { display: grid; justify-items: start; }
+.site-footer__contact p { color: var(--paper); font-size: 1.125rem; font-weight: 720; }
+.site-footer__contact address { margin-block: .55rem .3rem; font-style: normal; }
+.site-footer__contact a { font-weight: 620; }
+
+.site-footer__map {
+  display: block;
+  width: 100%;
+  height: 16.25rem;
+  border: 1px solid #3d526e;
+  border-radius: var(--radius);
+  background: #e0ebfb;
+}
 
 @media (max-width: 55rem) {
   .hero__inner { grid-template-columns: 1fr; }
@@ -328,6 +422,7 @@ h2 {
   .hero__image { max-height: 24rem; }
   .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .quote__inner { grid-template-columns: .85fr 1fr; gap: 1.65rem; }
+  .videos-list { grid-auto-columns: calc((100% - var(--video-gap)) / 2); }
 }
 
 @media (max-width: 42rem) {
@@ -342,7 +437,8 @@ h2 {
   .section-heading { margin-bottom: 1.35rem; }
   .service-grid, .quote__inner { grid-template-columns: 1fr; }
   .quote__copy { padding: 0; }
-  .site-footer__inner { align-items: flex-start; flex-direction: column; gap: .15rem; }
+  .videos-list { grid-auto-columns: 85%; }
+  .site-footer__inner { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (prefers-reduced-motion: reduce) {

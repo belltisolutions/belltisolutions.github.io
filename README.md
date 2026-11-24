@@ -1,2 +1,0 @@
-# belltisolutions.github.io
-Site

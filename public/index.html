@@ -9,6 +9,7 @@
   <link rel="icon" type="image/png" href="assets/bell-favicon.png">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <script src="videos.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -112,7 +113,7 @@
             <h3>Restauração de dados</h3>
             <p>Restauração de arquivos a partir de backups existentes, no mesmo equipamento ou em outro computador.</p>
           </a>
-          <a class="service-card service-card--accent" href="#orcamento" data-service="msp">
+          <a class="service-card" href="#orcamento" data-service="msp">
             <svg class="service-card__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
               <rect x="3" y="4" width="18" height="7" rx="2"/>
               <rect x="3" y="13" width="18" height="7" rx="2"/>
@@ -121,7 +122,7 @@
             <h3>Gestão de TI para empresas</h3>
             <p>Suporte contínuo (MSP), monitoramento de infraestrutura e acompanhamento das rotinas de backup.</p>
           </a>
-          <a class="service-card service-card--accent" href="#orcamento" data-service="starlink">
+          <a class="service-card" href="#orcamento" data-service="starlink">
             <svg class="service-card__icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
               <path d="M4 11l9 9a9 9 0 0 1-9-9Zm4.5 4.5 4.7-4.7m-.5-7.6a8 8 0 0 1 8.1 8.1m-8-4.5a4.6 4.6 0 0 1 4.5 4.5"/>
             </svg>
@@ -178,12 +179,43 @@
         </form>
       </div>
     </section>
+    <section id="videos" class="section" aria-labelledby="titulo-videos">
+      <div class="shell">
+        <div class="section-heading videos-heading">
+          <div>
+            <h2 id="titulo-videos">Últimos vídeos do Slackjeff</h2>
+            <a class="videos-channel" href="https://www.youtube.com/@slackjeff/videos">Ver canal no YouTube</a>
+          </div>
+          <div id="videos-controls" class="videos-controls" hidden>
+            <button id="videos-prev" type="button" aria-label="Vídeos anteriores" aria-controls="videos-list">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 6-6 6 6 6"/></svg>
+            </button>
+            <button id="videos-next" type="button" aria-label="Próximos vídeos" aria-controls="videos-list">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m10 6 6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+        <p id="videos-status" class="videos-status" role="status" hidden></p>
+        <ul id="videos-list" class="videos-list" aria-label="Vídeos recentes do canal" tabindex="0" hidden></ul>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="shell site-footer__inner">
-      <p>Bell Soluções em Tecnologia</p>
-      <a href="https://wa.me/5547997438987">WhatsApp (47) 99743-8987</a>
+      <div class="site-footer__contact">
+        <p>Bell Soluções em Tecnologia</p>
+        <address>
+          Rua Florença, 111 · Santa Terezinha<br>
+          Gaspar – SC · CEP 89114-283
+        </address>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Floren%C3%A7a%2C%20111%20-%20Santa%20Terezinha%2C%20Gaspar%20-%20SC%2C%2089114-283%2C%20Brasil">Abrir no Google Maps</a>
+        <a href="https://wa.me/5547997438987">WhatsApp (47) 99743-8987</a>
+      </div>
+      <iframe class="site-footer__map"
+        title="Google Maps: Rua Florença, 111, Gaspar – SC"
+        src="https://www.google.com/maps?q=Rua%20Floren%C3%A7a%2C%20111%20-%20Santa%20Terezinha%2C%20Gaspar%20-%20SC%2C%2089114-283%2C%20Brasil&amp;z=16&amp;output=embed"
+        width="600" height="260" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
     </div>
   </footer>
 </body>
