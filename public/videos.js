@@ -1,6 +1,7 @@
 "use strict";
 
 const videoList = document.querySelector("#videos-list");
+const videosSection = document.querySelector("#videos");
 const videoStatus = document.querySelector("#videos-status");
 const videoControls = document.querySelector("#videos-controls");
 const previousVideo = document.querySelector("#videos-prev");
@@ -83,4 +84,11 @@ async function loadVideos() {
 previousVideo.addEventListener("click", () => scrollVideos(-1));
 nextVideo.addEventListener("click", () => scrollVideos(1));
 videoList.addEventListener("scroll", updateVideoControls, { passive: true });
-loadVideos();
+function loadVideosOnOpen() {
+  if (!videosSection.open) return;
+  videosSection.removeEventListener("toggle", loadVideosOnOpen);
+  loadVideos();
+}
+
+videosSection.addEventListener("toggle", loadVideosOnOpen);
+loadVideosOnOpen();

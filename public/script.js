@@ -7,9 +7,9 @@ const serviceField = form.elements.namedItem("servico");
 const detailsField = form.elements.namedItem("detalhes");
 const submitButton = document.querySelector("#enviar-orcamento");
 
-document.querySelectorAll("[data-service]").forEach((card) => {
-  card.addEventListener("click", () => {
-    serviceField.value = card.dataset.service;
+document.querySelectorAll("[data-service]").forEach((link) => {
+  link.addEventListener("click", () => {
+    serviceField.value = link.dataset.service;
   });
 });
 
@@ -38,3 +38,24 @@ form.addEventListener("submit", (event) => {
 });
 
 submitButton.disabled = false;
+
+const bench = document.querySelector("#bancada");
+const benchVideoId = bench.dataset.youtubeId.trim();
+
+if (/^[A-Za-z0-9_-]{11}$/.test(benchVideoId)) {
+  const play = bench.querySelector(".bench__play");
+  const thumbnail = play.querySelector("img");
+  thumbnail.src = `https://i.ytimg.com/vi/${benchVideoId}/hqdefault.jpg`;
+  bench.hidden = false;
+
+  play.addEventListener("click", () => {
+    const player = document.createElement("iframe");
+    player.className = "bench__player";
+    player.title = bench.querySelector("h2").textContent;
+    player.src = `https://www.youtube-nocookie.com/embed/${benchVideoId}?autoplay=1`;
+    player.allow = "autoplay; encrypted-media; picture-in-picture";
+    player.allowFullscreen = true;
+    play.replaceWith(player);
+    player.focus();
+  });
+}
